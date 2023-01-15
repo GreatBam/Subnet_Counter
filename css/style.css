@@ -103,14 +103,6 @@ table
     font-weight: bold;
 }
 
-.subnetMaskTable, .subnetMaskTable th, .subnetMaskTable td
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
 .ipAddressTable, .ipAddressTable th, .ipAddressTable td
 {
     border: 1px solid black;

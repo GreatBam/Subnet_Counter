@@ -100,19 +100,6 @@ calculateButton.onclick = function() {
 
 }
 
-// function showMaskTable() {
-//     for(let i = 0;i < maskTableList.length; i++) {
-//         maskTableContent += ```
-//             <tr>
-//                 <td id="subnetMask_table_mask">
-//                     ${}
-//                 </td>
-//             </tr>```;
-//     }
-
-//     maskTable = maskTableContent;
-// }
-
 // function showIpTable() {
 //     for(let i = 0;i < ipTableList.length; i++) {
 //         ipTableContent += ```
