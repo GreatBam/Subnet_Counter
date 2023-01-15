@@ -5,6 +5,8 @@ let calculateButton = document.getElementById("calculateButton");
 let result = document.getElementById("result");
 let classRange = document.getElementById("classRange");
 let subnetMask = document.getElementById("subnetMask");
+let rangeSelection = document.getElementById("rangeSelection_container");
+let ipAddressTable = document.getElementById("ipAddressTable_container");
 
 let ipTable = document.getElementById("showIpTable").innerHTML;
 let ipTableContent;
@@ -157,23 +159,62 @@ function subnetId(sub) {
 }
 
 // print ip table
-// function showIpTable(list) {
-//     for(let i = 0;i < list.length; i++) {
-//         ipTableContent += ```
-//             <tr>
-//                 <td id="ipAddressTable_table_subnetAddressValue">
-//                     ${}
-//                 </td>
-//                 <td id="ipAddressTable_table_firstIpValue">
-//                     ${}
-//                 </td>
-//                 <td id="ipAddressTable_table_lastIpValue">
-//                     ${}
-//                 </td>
-//                 <td id="ipAddressTable_table_broadcastValue">
-//                     ${}
-//                 </td>
-//             </tr>```;
+// function showIpTable(classType, list) {
+//     switch(classType) {
+//         case "A":
+//             for(let i = 0;i < list.length; i++) {
+//                 ipTableContent += ```
+//                 <tr>
+//                     <td id="ipAddressTable_table_subnetAddressValue">
+                        
+//                     </td>
+//                     <td id="ipAddressTable_table_firstIpValue">
+                        
+//                     </td>
+//                     <td id="ipAddressTable_table_lastIpValue">
+                        
+//                     </td>
+//                     <td id="ipAddressTable_table_broadcastValue">
+                        
+//                     </td>
+//                 </tr>```;
+//             }
+//         case "B":
+//             for(let i = 0;i < list.length; i++) {
+//                 ipTableContent += ```
+//                 <tr>
+//                     <td id="ipAddressTable_table_subnetAddressValue">
+                        
+//                     </td>
+//                     <td id="ipAddressTable_table_firstIpValue">
+                        
+//                     </td>
+//                     <td id="ipAddressTable_table_lastIpValue">
+                        
+//                     </td>
+//                     <td id="ipAddressTable_table_broadcastValue">
+                        
+//                     </td>
+//                 </tr>```;
+//             }
+//         case "C":
+//             for(let i = 0;i < list.length; i++) {
+//                 ipTableContent += ```
+//                 <tr>
+//                     <td id="ipAddressTable_table_subnetAddressValue">
+//                         192.168.${}
+//                     </td>
+//                     <td id="ipAddressTable_table_firstIpValue">
+//                         ${}
+//                     </td>
+//                     <td id="ipAddressTable_table_lastIpValue">
+//                         ${}
+//                     </td>
+//                     <td id="ipAddressTable_table_broadcastValue">
+//                         ${}
+//                     </td>
+//                 </tr>```;
+//             }
 //     }
     
 //     ipTable = ipTableContent;
@@ -200,5 +241,10 @@ calculateButton.onclick = function() {
     let idList = subnetId(subnetBitNumber);
     console.log(idList);
 
+    rangeSelection.style.visibility = "visible";
+}
 
+// netID selection
+calculateIpButton.onclick = function() {
+    
 }

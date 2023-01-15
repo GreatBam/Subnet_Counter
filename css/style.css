@@ -119,12 +119,23 @@ th, td
     font-weight: bold;
 }
 
+#rangeSelection_container
+{
+    visibility: hidden;
+}
+
+#ipAddressTable_container
+{
+    visibility: hidden;
+}
+
 .ipAddressTable, .ipAddressTable th, .ipAddressTable td
 {
     border: 1px solid black;
     border-collapse: collapse;
     margin-top: 20px;
     font-weight: bold;
+    visibility: hidden;
 }
 
 .ipAddressTable_table_sr_title

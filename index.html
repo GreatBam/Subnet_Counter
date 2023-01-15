@@ -47,7 +47,7 @@
             <table class="class_mask_table">
                 <tr>
                     <td class="class_mask_table_value">
-                        <p>Ip class : </p>
+                        <p>Class : </p>
                     </td>
                     <td class="class_mask_table_range">
                         <div id="classRange"></div>
@@ -62,27 +62,42 @@
                     </td>
                 </tr>
             </table>
-
-
-            <div class="ipAddressTable_container">
-                <table class="ipAddressTable">
-                    <thead id="ipAddressTable_table_head">
-                        <th class="ipAddressTable_table_sr_title">
-                            Adresse de sous réseau
-                        </th>
-                        <th class="ipAddressTable_table_firstip_title">
-                            Première adresse IP
-                        </th>
-                        <th class="ipAddressTable_table_lastip_title">
-                            Dernière adresse IP
-                        </th>
-                        <th class="ipAddressTable_table_broadcast_title">
-                            Adresse de diffusion
-                        </th>
-                    </thead>
-                    <div id="showIpTable"></div>
-                </table>
+        </div>
+        <div id="rangeSelection_container">
+            <table class="rangeSelection">
+                <tr>
+                    <td>
+                        <label for="rangeSelectionValue">Select ip : </label>
+                    </td>
+                    <td>
+                        <input id="rangeSelectionValue" type="number">
+                    </td>
+                </tr>
+            </table>
+            <div class="calculateIpButton_container">
+                <button id="calculateIpButton">
+                    Show address table
+                </button>
             </div>
+        </div>
+        <div class="ipAddressTable_container">
+            <table class="ipAddressTable">
+                <thead id="ipAddressTable_table_head">
+                    <th class="ipAddressTable_table_sr_title">
+                        Adresse de sous réseau
+                    </th>
+                    <th class="ipAddressTable_table_firstip_title">
+                        Première adresse IP
+                    </th>
+                    <th class="ipAddressTable_table_lastip_title">
+                        Dernière adresse IP
+                    </th>
+                    <th class="ipAddressTable_table_broadcast_title">
+                        Adresse de diffusion
+                    </th>
+                </thead>
+                <div id="showIpTable"></div>
+            </table>
         </div>
     </div>
 </body>
