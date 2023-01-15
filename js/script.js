@@ -15,8 +15,17 @@ calculateButton.onclick = function() {
     console.log("subnetNumberValue : " + subnetNumberValue.value);
     console.log("hostNumberValue : " + hostNumberValue.value);
 
-    let totalSubnetNumber = (subnetNumberValue.value + (subnetNumberValue.value * 0.1));
-    let totalHostNumber = (hostNumberValue.value + (hostNumberValue.value * 0.1));
+    let subnetValue = subnetNumberValue.value;
+    let hostValue = hostNumberValue.value;
+
+    let subnetReserve = (subnetValue * 0.1);
+    let hostReserve = (hostValue * 0.1);
+
+    console.log("totalSubnetNumber : " + subnetReserve);
+    console.log("totalHostNumber : " + hostReserve);
+
+    let totalSubnetNumber = (parseFloat(subnetValue) + parseFloat(subnetReserve)).toFixed(2);
+    let totalHostNumber = (parseFloat(hostValue) + parseFloat(hostReserve)).toFixed(2);
 
     console.log("totalSubnetNumber : " + totalSubnetNumber);
     console.log("totalHostNumber : " + totalHostNumber);
