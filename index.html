@@ -44,29 +44,39 @@
             <div id="neededBits_title">
                 <h2>Class and subnet mask :</h2>
             </div>
-            <div class="classType_container">
-                <div class="classType">
-                    <p>Ip class : <span id="classRange"></span></p>
-                </div>
-            </div>
-            <div class="subnetMask_container">
-                <div class="subnetMask_decimal">
-                    <p>Subnet mask : <span id="subnetMask"></span></p>
-                </div>
-            </div>
+            <table class="class_mask_table">
+                <tr>
+                    <td class="class_mask_table_value">
+                        <p>Ip class : </p>
+                    </td>
+                    <td class="class_mask_table_range">
+                        <div id="classRange"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="class_mask_table_value">
+                        <p>Subnet mask : </p>
+                    </td>
+                    <td class="class_mask_table_value">
+                        <div id="subnetMask"></div>
+                    </td>
+                </tr>
+            </table>
+
+
             <div class="ipAddressTable_container">
                 <table class="ipAddressTable">
                     <thead id="ipAddressTable_table_head">
-                        <th class="ipAddressTable_table_title">
+                        <th class="ipAddressTable_table_sr_title">
                             Adresse de sous réseau
                         </th>
-                        <th class="ipAddressTable_table_title">
+                        <th class="ipAddressTable_table_firstip_title">
                             Première adresse IP
                         </th>
-                        <th class="ipAddressTable_table_title">
+                        <th class="ipAddressTable_table_lastip_title">
                             Dernière adresse IP
                         </th>
-                        <th class="ipAddressTable_table_title">
+                        <th class="ipAddressTable_table_broadcast_title">
                             Adresse de diffusion
                         </th>
                     </thead>

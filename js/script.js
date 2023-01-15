@@ -100,9 +100,10 @@ calculateButton.onclick = function() {
     let classRangeValue = classRangeFunc(bitSum);
     classRange.innerHTML = classRangeValue;
     classRange.style.color = "red";
-
+    
     let subnetMaskValue = subMask(bitSum, subnetBitNumber, hostBitNumber, classRangeValue);
     subnetMask.innerHTML = subnetMaskValue;
+    subnetMask.style.color = "red";
 }
 
 // function showIpTable() {
