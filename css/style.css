@@ -91,24 +91,12 @@ table
     text-align: right;
 }
 
-.neededBits_table tr, .neededBits_table td
-{
-    text-align: right;
-}
-
-#neededBitSr
-{
-    font-weight: bold;
-    color: #04BB07;
-}
-
-#neededBitIp
-{
-    font-weight: bold;
-    color: blue;
-}
-
 #classRange
+{
+    font-weight: bold;
+}
+
+#subnetMask
 {
     font-weight: bold;
 }

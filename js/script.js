@@ -3,9 +3,8 @@ let subnetNumberValue = document.getElementById("subnetNumberValue");
 let hostNumberValue = document.getElementById("hostNumberValue");
 let calculateButton = document.getElementById("calculateButton");
 let result = document.getElementById("result");
-let neededBitSr = document.getElementById("neededBitSr");
-let neededBitIp = document.getElementById("neededBitIp");
 let classRange = document.getElementById("classRange");
+let subnetMask = document.getElementById("subnetMask");
 
 let ipTable = document.getElementById("showIpTable").innerHTML;
 let ipTableContent;
@@ -47,6 +46,7 @@ function classRangeFunc(value) {
 
 function subMask(total, sub, host, classType) {
     let subBinary = "";
+    let mask = "";
     for(let i = 0; i < sub; i++) {
         subBinary += "1";
     }
@@ -58,16 +58,35 @@ function subMask(total, sub, host, classType) {
     switch(total) {
         case 7:
             subBinary += "0";
+            break;
         case 6:
             subBinary += "00";
+            break;
         case 5:
             subBinary += "000";
+            break;
         case 4:
             subBinary += "0000";
+            break;
     }
+    console.log("Subnet binary value rounded : " + subBinary);
 
     let subDecimal = parseInt(subBinary, 2);
     console.log("Subnet deciaml value : " + subDecimal);
+
+    switch(classType) {
+        case "A":
+            mask += `255.${subDecimal}.0.0`;
+            break;
+        case "B":
+            mask += `255.255.${subDecimal}.0`;
+            break;
+        case "C":
+            mask += `255.255.255.${subDecimal}`;
+            break;
+    }
+    console.log(mask);
+    return mask;
 }
 
 calculateButton.onclick = function() {
@@ -77,16 +96,13 @@ calculateButton.onclick = function() {
     let hostBitNumber = hostLog();
     let bitSum = subnetBitNumber + hostBitNumber;
     console.log("total number of bit : " + bitSum);
-    neededBitSr.innerHTML = subnetBitNumber;
-    neededBitIp.innerHTML = hostBitNumber;
 
-    
     let classRangeValue = classRangeFunc(bitSum);
     classRange.innerHTML = classRangeValue;
     classRange.style.color = "red";
 
-    let subnetMask = subMask(bitSum, subnetBitNumber, hostBitNumber, classRangeValue);
-
+    let subnetMaskValue = subMask(bitSum, subnetBitNumber, hostBitNumber, classRangeValue);
+    subnetMask.innerHTML = subnetMaskValue;
 }
 
 // function showIpTable() {
