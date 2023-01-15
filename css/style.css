@@ -16,12 +16,6 @@ table
     margin-bottom: 20px;
 }
 
-input
-{
-    width: 150px;
-    margin-bottom: 10px;
-}
-
 .navtop
 {
     background-color: #3f69a8;
@@ -93,7 +87,7 @@ input
     color: blue;
 }
 
-.subnetMaskTable
+.subnetMaskTable, .subnetMaskTable th, .subnetMaskTable td
 {
     border: 1px solid black;
     border-collapse: collapse;
@@ -101,15 +95,7 @@ input
     font-weight: bold;
 }
 
-.ipAddressTable
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-th, td
+.ipAddressTable, .ipAddressTable th, .ipAddressTable td
 {
     border: 1px solid black;
     border-collapse: collapse;

@@ -15,22 +15,31 @@
     </nav>
     <div class="container">
         <h1 id="title">IP address table calcultaor for subnets</h1>
-        <div class="input_container">
-            <div class="subnetNumber">
-                <label for="subnetNumberValue">Number of subnets : </label>
-                <input id="subnetNumberValue" type="number">
-            </div>
-            <div class="hostNumber">
-                <label for="hostNumberValue">Number of host : </label>
-                <input id="hostNumberValue" type="number">
-            </div>
-        </div>
+        <table class="input_table">
+            <thead>
+                <tr>
+                    <td>
+                        <label for="subnetNumberValue">Number of subnets : </label>
+                    </td>
+                    <td>
+                        <input id="subnetNumberValue" type="number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="hostNumberValue">Number of host : </label>
+                    </td>
+                    <td>
+                        <input id="hostNumberValue" type="number">
+                    </td>
+                </tr>
+        </table>
         <div class="calculateButton_container">
             <button id="calculateButton">
                 Calculate
             </button>
         </div>
-        <div class="result">
+        <div class="result_container">
             <div class="neededBits">
                 <h2>Amount of bits</h2>
                 <div class="neededBits_sr_container">
@@ -45,7 +54,7 @@
                     <p>Ip class : <span></span></p>
                 </div>
             </div>
-            <div class="subnetMask">
+            <div class="subnetMask_container">
                 <div class="subnetMask_decimal">
                     <p>Subnet mask : <span id="subnetMask"></span></p>
                 </div>
@@ -60,7 +69,7 @@
                     </table>
                 </div>
             </div>
-            <div class="ipAddressTable">
+            <div class="ipAddressTable_container">
                 <table class="ipAddressTable">
                     <thead id="ipAddressTable_table_head">
                         <th class="ipAddressTable_table_title">
