@@ -7,9 +7,7 @@ let neededBitSr = document.getElementById("neededBitSr");
 let neededBitIp = document.getElementById("neededBitIp");
 let classRange = document.getElementById("classRange");
 
-let maskTable = document.getElementById("showMaskTable").innerHTML;
 let ipTable = document.getElementById("showIpTable").innerHTML;
-let maskTableContent;
 let ipTableContent;
 
 // functions

@@ -86,6 +86,16 @@ table
     visibility: hidden;
 }
 
+.input_table tr, .input_table td
+{
+    text-align: right;
+}
+
+.neededBits_table tr, .neededBits_table td
+{
+    text-align: right;
+}
+
 #neededBitSr
 {
     font-weight: bold;
