@@ -9,7 +9,7 @@ let subnetMask = document.getElementById("subnetMask");
 let ipTable = document.getElementById("showIpTable").innerHTML;
 let ipTableContent;
 
-// functions
+// Bit number calculation
 function subnetLog() {
     let subnetValue = subnetNumberValue.value;
     let subnetReserve = (subnetValue * 0.1);
@@ -18,6 +18,7 @@ function subnetLog() {
     console.log("number of subnet : " + subnetNumberValue.value);
     console.log("subnet reserve : " + subnetReserve);
     console.log("total number of subnet : " + totalSubnetNumber);
+    console.log("total number of subnet bit : " + subBitValue);
     return subBitValue;
 }
 
@@ -29,9 +30,11 @@ function hostLog() {
     console.log("number of host : " + hostNumberValue.value);
     console.log("host reserve : " + hostReserve);
     console.log("total number of host : " + totalHostNumber);
+    console.log("total number of host bit : " + hostBitNumber);
     return hostBitNumber;
 }
 
+// Class range calculation
 function classRangeFunc(value) {
     let classRange = "";
     if(value <= 8) {
@@ -44,7 +47,8 @@ function classRangeFunc(value) {
     return classRange;
 }
 
-function subMask(total, sub, host, classType) {
+// Binary sub mask
+function binarySubMask(total, sub, host) {
     let subBinary = "";
     let mask = "";
     for(let i = 0; i < sub; i++) {
@@ -70,9 +74,14 @@ function subMask(total, sub, host, classType) {
             break;
     }
     console.log("Subnet binary value rounded : " + subBinary);
+    return subBinary;
+}
 
-    let subDecimal = parseInt(subBinary, 2);
-    console.log("Subnet deciaml value : " + subDecimal);
+// Decimal sub mask
+function decimalSubMask(classType, binary) {
+    let subDecimal = parseInt(binary, 2);
+    let mask = "";
+    console.log("Subnet decimal value : " + subDecimal);
 
     switch(classType) {
         case "A":
@@ -89,25 +98,67 @@ function subMask(total, sub, host, classType) {
     return mask;
 }
 
-calculateButton.onclick = function() {
-    result.style.visibility = "visible";
+function subnetId(sub) {
+    let subIdList = [];
+    let subLoop = 0;
+    console.log("Subnet bit number verification : " + sub)
 
-    let subnetBitNumber = subnetLog();
-    let hostBitNumber = hostLog();
-    let bitSum = subnetBitNumber + hostBitNumber;
-    console.log("total number of bit : " + bitSum);
-
-    let classRangeValue = classRangeFunc(bitSum);
-    classRange.innerHTML = classRangeValue;
-    classRange.style.color = "red";
-    
-    let subnetMaskValue = subMask(bitSum, subnetBitNumber, hostBitNumber, classRangeValue);
-    subnetMask.innerHTML = subnetMaskValue;
-    subnetMask.style.color = "red";
+    switch(sub) {
+        case 1:
+            for(let i = 0; i < 2; i++) {
+                subLoop += 128;
+                subIdList.push(subLoop);
+            }
+            break;
+        case 2:
+            for(let i = 0; i < 4; i++) {
+                subLoop += 64;
+                subIdList.push(subLoop);
+            }
+            break;
+        case 3:
+            for(let i = 0; i < 8; i++) {
+                subLoop += 32;
+                subIdList.push(subLoop);
+            }
+            break;
+        case 4:
+            for(let i = 0; i < 16; i++) {
+                subLoop += 16;
+                subIdList.push(subLoop);
+            }
+            break;
+        case 5:
+            for(let i = 0; i < 32; i++) {
+                subLoop += 8;
+                subIdList.push(subLoop);
+            }
+            break;
+        case 6:
+            for(let i = 0; i < 64; i++) {
+                subLoop += 4;
+                subIdList.push(subLoop);
+            }
+            break;
+        case 7:
+            for(let i = 0; i < 128; i++) {
+                subLoop += 2;
+                subIdList.push(subLoop);
+            }
+            break;
+        case 8:
+            for(let i = 0; i < 255; i++) {
+                subLoop += 1;
+                subIdList.push(subLoop);
+            }
+            break;
+    }
+    return subIdList;
 }
 
-// function showIpTable() {
-//     for(let i = 0;i < ipTableList.length; i++) {
+// print ip table
+// function showIpTable(list) {
+//     for(let i = 0;i < list.length; i++) {
 //         ipTableContent += ```
 //             <tr>
 //                 <td id="ipAddressTable_table_subnetAddressValue">
@@ -127,3 +178,27 @@ calculateButton.onclick = function() {
     
 //     ipTable = ipTableContent;
 // }
+
+// Main function
+calculateButton.onclick = function() {
+    result.style.visibility = "visible";
+
+    let subnetBitNumber = subnetLog();
+    let hostBitNumber = hostLog();
+    let bitSum = subnetBitNumber + hostBitNumber;
+    console.log("total number of bit : " + bitSum);
+
+    let classRangeValue = classRangeFunc(bitSum);
+    classRange.innerHTML = classRangeValue;
+    classRange.style.color = "red";
+    
+    let subnetMaskBinaryValue = binarySubMask(bitSum, subnetBitNumber, hostBitNumber);
+    let subnetMaskDecimalValue = decimalSubMask(classRangeValue, subnetMaskBinaryValue);
+    subnetMask.innerHTML = subnetMaskDecimalValue;
+    subnetMask.style.color = "red";
+
+    let idList = subnetId(subnetBitNumber);
+    console.log(idList);
+
+
+}
