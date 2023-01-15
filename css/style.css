@@ -10,11 +10,17 @@ label
     text-align: right;
 }
 
+input
+{
+    width: 50px;
+    text-align: center;
+}
+
 table
 {
     margin: 0 auto; /* or margin: 0 auto 0 auto */
     margin-bottom: 20px;
-}
+} 
 
 .navtop
 {
@@ -85,6 +91,11 @@ table
 {
     font-weight: bold;
     color: blue;
+}
+
+#classRange
+{
+    font-weight: bold;
 }
 
 .subnetMaskTable, .subnetMaskTable th, .subnetMaskTable td

@@ -14,9 +14,9 @@
         </div>
     </nav>
     <div class="container">
-        <h1 id="title">IP address table calcultaor for subnets</h1>
-        <table class="input_table">
-            <thead>
+        <h1 id="title">IP address table calculator for subnet</h1>
+        <div id="input_table_container">
+            <table class="input_table">
                 <tr>
                     <td>
                         <label for="subnetNumberValue">Number of subnets : </label>
@@ -33,25 +33,38 @@
                         <input id="hostNumberValue" type="number">
                     </td>
                 </tr>
-        </table>
+            </table>
+        </div>
         <div class="calculateButton_container">
             <button id="calculateButton">
                 Calculate
             </button>
         </div>
         <div class="result_container">
-            <div class="neededBits">
-                <h2>Amount of bits</h2>
-                <div class="neededBits_sr_container">
-                    <p>Total amount of subnet bits : <span id="neededBitSr"></span></p>
-                </div>
-                <div class="neededBits_ip_container">
-                    <p>Total amount of host bits : <span id="neededBitIp"></span></p>
-                </div>
+            <div class="neededBits_container">
+                <h2>Class and subnet mask :</h2>
+                <table class="neededBits_table">
+                    <tr>
+                        <td>
+                            Total amount of subnet bits :
+                        </td>
+                        <td>
+                            <div id="neededBitSr"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total amount of host bits :
+                        </td>
+                        <td>
+                            <div id="neededBitIp"></div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div class="classType">
-                <div class="ipRange">
-                    <p>Ip class : <span></span></p>
+            <div class="classType_container">
+                <div class="classType">
+                    <p>Ip class : <span id="classRange"></span></p>
                 </div>
             </div>
             <div class="subnetMask_container">
