@@ -45,7 +45,7 @@ function classRangeFunc(value) {
     return classRange;
 }
 
-function subMask(total, sub, host) {
+function subMask(total, sub, host, classType) {
     let subBinary = "";
     for(let i = 0; i < sub; i++) {
         subBinary += "1";
@@ -55,27 +55,19 @@ function subMask(total, sub, host) {
     }
     console.log("Subnet binary value : " + subBinary);
     
+    switch(total) {
+        case 7:
+            subBinary += "0";
+        case 6:
+            subBinary += "00";
+        case 5:
+            subBinary += "000";
+        case 4:
+            subBinary += "0000";
+    }
+
     let subDecimal = parseInt(subBinary, 2);
     console.log("Subnet deciaml value : " + subDecimal);
-    
-    // switch(total) {
-    //     case 8:
-    //         sum = total;
-    //     case 7:
-    //         sum = total*10;
-    //     case 6:
-    //         sum = total*100;
-    //     case 5:
-    //         sum = total*1000;
-    //     case 4:
-    //         sum = total*10000;
-    //     case 3:
-    //         sum = total*100000;
-    //     case 2:
-    //         sum = total*1000000;
-    //     case 1:
-    //         sum = total*10000000;
-    // }
 }
 
 calculateButton.onclick = function() {
@@ -84,8 +76,7 @@ calculateButton.onclick = function() {
     let subnetBitNumber = subnetLog();
     let hostBitNumber = hostLog();
     let bitSum = subnetBitNumber + hostBitNumber;
-    console.log("total number of subnet bit : " + hostBitNumber);
-    console.log("total number of host bit : " + subnetBitNumber);
+    console.log("total number of bit : " + bitSum);
     neededBitSr.innerHTML = subnetBitNumber;
     neededBitIp.innerHTML = hostBitNumber;
 
@@ -94,7 +85,7 @@ calculateButton.onclick = function() {
     classRange.innerHTML = classRangeValue;
     classRange.style.color = "red";
 
-    let subnetMask = subMask(bitSum, subnetBitNumber, hostBitNumber);
+    let subnetMask = subMask(bitSum, subnetBitNumber, hostBitNumber, classRangeValue);
 
 }
 
