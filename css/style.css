@@ -81,6 +81,11 @@ table
     text-align: center;
 }
 
+#result
+{
+    visibility: hidden;
+}
+
 #neededBitSr
 {
     font-weight: bold;

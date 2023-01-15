@@ -2,6 +2,7 @@
 let subnetNumberValue = document.getElementById("subnetNumberValue");
 let hostNumberValue = document.getElementById("hostNumberValue");
 let calculateButton = document.getElementById("calculateButton");
+let result = document.getElementById("result");
 let neededBitSr = document.getElementById("neededBitSr");
 let neededBitIp = document.getElementById("neededBitIp");
 let classRange = document.getElementById("classRange");
@@ -46,7 +47,42 @@ function classRangeFunc(value) {
     return classRange;
 }
 
+function subMask(total, sub, host) {
+    let subBinary = "";
+    for(let i = 0; i < sub; i++) {
+        subBinary += "1";
+    }
+    for(let j = 0; j < host; j++) {
+        subBinary += "0";
+    }
+    console.log("Subnet binary value : " + subBinary);
+    
+    let subDecimal = parseInt(subBinary, 2);
+    console.log("Subnet deciaml value : " + subDecimal);
+    
+    // switch(total) {
+    //     case 8:
+    //         sum = total;
+    //     case 7:
+    //         sum = total*10;
+    //     case 6:
+    //         sum = total*100;
+    //     case 5:
+    //         sum = total*1000;
+    //     case 4:
+    //         sum = total*10000;
+    //     case 3:
+    //         sum = total*100000;
+    //     case 2:
+    //         sum = total*1000000;
+    //     case 1:
+    //         sum = total*10000000;
+    // }
+}
+
 calculateButton.onclick = function() {
+    result.style.visibility = "visible";
+
     let subnetBitNumber = subnetLog();
     let hostBitNumber = hostLog();
     let bitSum = subnetBitNumber + hostBitNumber;
@@ -55,9 +91,13 @@ calculateButton.onclick = function() {
     neededBitSr.innerHTML = subnetBitNumber;
     neededBitIp.innerHTML = hostBitNumber;
 
+    
     let classRangeValue = classRangeFunc(bitSum);
     classRange.innerHTML = classRangeValue;
     classRange.style.color = "red";
+
+    let subnetMask = subMask(bitSum, subnetBitNumber, hostBitNumber);
+
 }
 
 // function showMaskTable() {
