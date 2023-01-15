@@ -24,14 +24,14 @@ calculateButton.onclick = function() {
     console.log("totalSubnetNumber : " + subnetReserve);
     console.log("totalHostNumber : " + hostReserve);
 
-    let totalSubnetNumber = (parseFloat(subnetValue) + parseFloat(subnetReserve)).toFixed(2);
-    let totalHostNumber = (parseFloat(hostValue) + parseFloat(hostReserve)).toFixed(2);
+    let totalSubnetNumber = Math.ceil(parseFloat(subnetValue) + parseFloat(subnetReserve)).toFixed(1);
+    let totalHostNumber = Math.ceil(parseFloat(hostValue) + parseFloat(hostReserve)).toFixed(1);
 
     console.log("totalSubnetNumber : " + totalSubnetNumber);
     console.log("totalHostNumber : " + totalHostNumber);
 
     let subnetBitNumber = Math.ceil((Math.log(totalSubnetNumber))/(Math.log(2)));
-    let hostBitNumber = Math.ceil((Math.log(totalHostNumber))/(Math.log(2)));
+    let hostBitNumber = Math.ceil((Math.log(totalHostNumber+2))/(Math.log(2)));
 
     console.log("subnetBitNumber : " + subnetBitNumber);
     console.log("hostBitNumber : " + hostBitNumber);
