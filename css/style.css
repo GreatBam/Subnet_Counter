@@ -1,0 +1,118 @@
+body
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+label
+{
+    display: inline-block;
+    /* width: 350px; */
+    text-align: right;
+}
+
+table
+{
+    margin: 0 auto; /* or margin: 0 auto 0 auto */
+    margin-bottom: 20px;
+}
+
+input
+{
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.navtop
+{
+    background-color: #3f69a8;
+    height: 60px;
+    width: 100%;
+    border: 0;
+}
+
+.navtop div
+{
+    display: flex;
+    margin: 0 auto;
+    width: 1000px;
+    height: 120%;
+}
+
+.navtop div h1, .navtop div a
+{
+    display: inline-flex;
+    align-items: center;
+}
+
+.navtop div h1
+{
+    position: relative; right: 400px;
+    flex: 1;
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+    color: #ecf0f6;
+    font-weight: normal;
+}
+
+.navtop div a
+{
+    position: relative; left: 400px;
+    padding: 0 20px;
+    text-decoration: none;
+    color: #c5d2e5;
+    font-weight: bold;
+}
+
+.navtop div a i
+{
+    padding: 2px 8px 0 0;
+}
+
+.navtop div a:hover
+{
+    color: #ecf0f6;
+}
+
+.container
+{
+    display: block;
+    align-items: center;
+    text-align: center;
+}
+
+#neededBitSr
+{
+    font-weight: bold;
+    color: #04BB07;
+}
+
+#neededBitIp
+{
+    font-weight: bold;
+    color: blue;
+}
+
+.subnetMaskTable
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.ipAddressTable
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+th, td
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-weight: bold;
+}

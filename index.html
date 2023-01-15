@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subnet Counter</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navtop">
+        <div>
+            <h1>IPv4 Classfull Subnet Counter</h1>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 id="title">IP address table calcultaor for subnets</h1>
+        <div class="input_container">
+            <div class="subnetNumber">
+                <label for="subnetNumberValue">Number of subnets : </label>
+                <input id="subnetNumberValue" type="number">
+            </div>
+            <div class="hostNumber">
+                <label for="hostNumberValue">Number of host : </label>
+                <input id="hostNumberValue" type="number">
+            </div>
+        </div>
+        <div class="calculateButton_container">
+            <button id="calculateButton">
+                Calculate
+            </button>
+        </div>
+        <div id="result">
+            <div id="neededBits">
+                <h2>Amount of bits</h2>
+                <div id="neededBits_sr_container">
+                    <p>Total amount of subnet bits : <span id="neededBitSr"></span></p>
+                </div>
+                <div id="neededBits_ip_container">
+                    <p>Total amount of host bits : <span id="neededBitIp"></span></p>
+                </div>
+            </div>
+            <div id="classType">
+                <div id="ipRange">
+                    <p>Ip class : <span></span></p>
+                </div>
+            </div>
+            <div id="subnetMask">
+                <div id="subnetMask_binary">
+
+                </div>
+                <div id="subnetMask_decimal">
+                    
+                </div>
+                <div id="subnetMask_table_container">
+                    <table class="subnetMaskTable">
+                        <thead id="subnetMask_table_head">
+                            <th class="subnetMask_table_title">
+                                Awailable subnet
+                            </th>
+                        </thead>
+                        <div id="showMaskTable"></div>
+                    </table>
+                </div>
+            </div>
+            <div id="ipAddressTable">
+                <table class="ipAddressTable">
+                    <thead id="ipAddressTable_table_head">
+                        <th class="ipAddressTable_table_title">
+                            Adresse de sous réseau
+                        </th>
+                        <th class="ipAddressTable_table_title">
+                            Première adresse IP
+                        </th>
+                        <th class="ipAddressTable_table_title">
+                            Dernière adresse IP
+                        </th>
+                        <th class="ipAddressTable_table_title">
+                            Adresse de diffusion
+                        </th>
+                    </thead>
+                    <div id="showIpTable"></div>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+    <script src="js/script.js"></script>
+</html>
