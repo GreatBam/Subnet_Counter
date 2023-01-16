@@ -6,6 +6,7 @@ let result = document.getElementById("result");
 let classRange = document.getElementById("classRange");
 let subnetMask = document.getElementById("subnetMask");
 let rangeSelection = document.getElementById("rangeSelection_container");
+let rangeSelectionNumber = document.getElementById("rangeSelectionValue");
 let ipAddressTable = document.getElementById("ipAddressTable_container");
 
 let ipTable = document.getElementById("showIpTable").innerHTML;
@@ -241,7 +242,8 @@ calculateButton.onclick = function() {
     let idList = subnetId(subnetBitNumber);
     console.log(idList);
 
-    rangeSelection.style.visibility = "visible";
+
+    }
 }
 
 // netID selection
