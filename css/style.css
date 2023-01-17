@@ -112,11 +112,13 @@ th, td
 #classRange
 {
     font-weight: bold;
+    color: red;
 }
 
 #subnetMask
 {
     font-weight: bold;
+    color: red;
 }
 
 #rangeSelection_container
@@ -142,7 +144,17 @@ th, td
     color: #04BB07;
 }
 
+.ipAddressTable_table_sr_value
+{
+    color: #04BB07;
+}
+
 .ipAddressTable_table_firstip_title, .ipAddressTable_table_lastip_title
+{
+    color: blue;
+}
+
+.ipAddressTable_table_firstIp_value, .ipAddressTable_table_lastIp_value
 {
     color: blue;
 }
@@ -152,4 +164,7 @@ th, td
     color: red;
 }
 
-/* , .ipAddressTable th, .ipAddressTable td */
+.ipAddressTable_table_broadcast_value
+{
+    color: red;
+}

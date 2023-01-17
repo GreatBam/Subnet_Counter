@@ -25,21 +25,20 @@ calculateButton.onclick = function() {
     let subnetReserve = (subnetValue * 0.1);
     let totalSubnetNumber = Math.ceil(parseFloat(subnetValue) + parseFloat(subnetReserve)).toFixed(1);
     let subBitNumber = Math.ceil((Math.log(totalSubnetNumber))/(Math.log(2)));
-    console.log("number of subnet : " + subnetNumberValue.value);
-    console.log("subnet reserve : " + subnetReserve);
-    console.log("total number of subnet : " + totalSubnetNumber);
-    console.log("total number of subnet bit : " + subBitNumber);
-    
     let hostValue = hostNumberValue.value;
     let hostReserve = (hostValue * 0.1);
     let totalHostNumber = Math.ceil(parseFloat(hostValue) + parseFloat(hostReserve)).toFixed(1);
     let hostBitNumber = Math.ceil((Math.log(totalHostNumber+2))/(Math.log(2)));
-    console.log("number of host : " + hostNumberValue.value);
-    console.log("host reserve : " + hostReserve);
-    console.log("total number of host : " + totalHostNumber);
-    console.log("total number of host bit : " + hostBitNumber);
-    
     let bitSum = subBitNumber + hostBitNumber;
+
+    // debug
+    console.log("subnet reserve :" + subnetReserve);
+    console.log("host reserve : " + hostReserve);
+    console.log("total number of subnet : " + totalSubnetNumber);
+    console.log("total number of host : " + totalHostNumber);
+    console.log("Bits :");
+    console.log("total number of subnet bit : " + subBitNumber);
+    console.log("total number of host bit : " + hostBitNumber);
     console.log("Bit sum : " + bitSum);
 
     if(bitSum <= 8) {
@@ -58,7 +57,7 @@ calculateButton.onclick = function() {
             }
         }
         console.log("Classe C");
-        console.log("Mask : " + mask);
+        console.log("Binary mask : " + mask);
     } else if(bitSum <= 16) {
         classType = "B";
         classRange.innerHTML = classType;
@@ -83,7 +82,7 @@ calculateButton.onclick = function() {
             }
         }
         console.log("Classe B");
-        console.log("Mask : " + mask);
+        console.log("Binary mask : " + mask);
     } else {
         classType = "A";
         classRange.innerHTML = classType;
@@ -117,10 +116,10 @@ calculateButton.onclick = function() {
             }
         }
         console.log("Classe A");
-        console.log("Mask : " + mask);
+        console.log("Binary mask : " + mask);
     }
     let subDecimal = parseInt(mask, 2)
-    console.log("Mask : " + subDecimal);
+    console.log("Decimal mask : " + subDecimal);
 
     result.style.visibility = "visible";
     classRange.innerHTML = classType;
@@ -197,12 +196,12 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
             increase += 1;
             break;
     }
-    console.log("Iterate value : " + iterate)
+    console.log("Increase value : " + increase);
     switch(classType) {
         case "A":
             loop = Math.pow(iterate, 3);
             for(let i = 0;i < loop; i++) {
-                ipTableContent += "<tr><td>172.'+step3+'.'+step2+'.'+step+</td><td>10.'+step3+'.'+step2+'.'+(step+1)+</td><td>10.'+step3+'.'+step2+'.'+((step+increase)-2)+</td><td>10.'+step3+'.'+step2+'.'+((step+increase)-1)+'</td></tr>";
+                ipTableContent += '<tr><td class="ipAddressTable_table_sr_value">172.'+step3+'.'+step2+'.'+step+'</td><td class="ipAddressTable_table_firstIp_value">10.'+step3+'.'+step2+'.'+(step+1)+'</td><td class="ipAddressTable_table_lastIp_value">10.'+step3+'.'+step2+'.'+((step+increase)-2)+'</td><td class="ipAddressTable_table_broadcast_value">10.'+step3+'.'+step2+'.'+((step+increase)-1)+'</td></tr>';
                 if((step+increase) >= 255) {
                     step2 += increase;
                     step = 0;
@@ -221,7 +220,7 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
         case "B":
             loop = Math.pow(iterate, 2);
             for(let i = 0;i < loop; i++) {
-                ipTableContent += '<tr><td>172.'+rangeSelect+'.'+step2+'.'+step+'</td><td>172.'+rangeSelect+'.'+step2+'.'+(step+1)+'</td><td>172.'+rangeSelect+'.'+step2+'.'+((step+increase)-2)+'</td><td>172.'+rangeSelect+'.'+step2+'.'+((step+increase)-1)+'</td></tr>';
+                ipTableContent += '<tr><td class="ipAddressTable_table_sr_value">172.'+rangeSelect+'.'+step2+'.'+step+'</td><td class="ipAddressTable_table_firstIp_value">172.'+rangeSelect+'.'+step2+'.'+(step+1)+'</td><td class="ipAddressTable_table_lastIp_value">172.'+rangeSelect+'.'+step2+'.'+((step+increase)-2)+'</td><td class="ipAddressTable_table_broadcast_value">172.'+rangeSelect+'.'+step2+'.'+((step+increase)-1)+'</td></tr>';
                 if((step + increase) >= 255) {
                     step2 += increase;
                     step = 0;
@@ -235,7 +234,7 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
             break;
         case "C":
             for(let i = 0;i < iterate; i++) {
-                ipTableContent += '<tr><td>192.168.'+rangeSelect+'.'+step+'</td><td>192.168.'+rangeSelect+'.'+(step+1)+'</td><td>192.168.'+rangeSelect+'.'+((step+increase)-2)+'</td><td>192.168.'+rangeSelect+'.'+((step+increase)-1)+'</td></tr>';
+                ipTableContent += '<tr><td class="ipAddressTable_table_sr_value">192.168.'+rangeSelect+'.'+step+'</td><td class="ipAddressTable_table_firstIp_value">192.168.'+rangeSelect+'.'+(step+1)+'</td><td class="ipAddressTable_table_lastIp_value">192.168.'+rangeSelect+'.'+((step+increase)-2)+'</td><td class="ipAddressTable_table_broadcast_value">192.168.'+rangeSelect+'.'+((step+increase)-1)+'</td></tr>';
                 step += increase;   
             }
             break;
