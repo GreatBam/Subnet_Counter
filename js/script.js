@@ -11,6 +11,7 @@ let rangeSelectionNumber = document.getElementById("rangeSelectionValue");
 let calculateIpButton = document.getElementById("calculateIpButton");
 let ipAddressTable = document.getElementById("ipAddressTable_container");
 let ipTable = document.getElementById("showIpTable");
+let reset = document.getElementById("reset");
 let classType = "";
 let mask = "";
 let subnetMaskDecimalValue = "";
@@ -131,8 +132,8 @@ calculateButton.onclick = function() {
     } else if(classType == "B") {
         subnetMaskDecimalValue = `255.255.${subDecimal}.0`;
         subnetMask.innerHTML = subnetMaskDecimalValue;
-        rangeSelectionFunc(classType, subDecimal);
         ipRange.innerHTML = "Choose between 16 and 31";
+        rangeSelectionFunc(classType, subDecimal);
     } else if(classType == "A") {
         subnetMaskDecimalValue = `255.${subDecimal}.0.0`;
         subnetMask.innerHTML = subnetMaskDecimalValue;
@@ -150,6 +151,7 @@ function rangeSelectionFunc(classType, subDecimal) {
 }
 
 function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
+    ipAddressTable.style.visibility = "visible";
     let iterate = 0;
     let step = 0;
     let step2 = 0;
@@ -157,7 +159,6 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
     let increase = 0;
     let loop = 0;
     let ipTableContent = "<table class='ipAddressTable'><thead id='ipAddressTable_table_head'><th class='ipAddressTable_table_sr_title'>Adresse de sous réseau</th><th class='ipAddressTable_table_firstip_title'>Première adresse IP</th><th class='ipAddressTable_table_lastip_title'>Dernière adresse IP</th><th class='ipAddressTable_table_broadcast_title'>Adresse de diffusion</th></thead>";
-    ipAddressTable.style.visibility = "visible";
     switch(subDecimal) {
         case 0:
             iterate += 0;
@@ -241,4 +242,8 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
     }
     ipTableContent += "</table>";
     ipTable.innerHTML = ipTableContent;
+}
+
+reset.onclick = function() {
+    location.reload();
 }

@@ -126,6 +126,11 @@ th, td
     visibility: hidden;
 }
 
+#ipRange
+{
+    font-weight: bold;
+}
+
 #ipAddressTable_container
 {
     visibility: hidden;

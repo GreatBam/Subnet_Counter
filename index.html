@@ -19,7 +19,7 @@
             <table class="input_table">
                 <tr>
                     <td>
-                        <label for="subnetNumberValue">Number of subnets : </label>
+                        <label for="subnetNumberValue" style="font-weight: bold;">Number of subnets : </label>
                     </td>
                     <td>
                         <input id="subnetNumberValue" type="number">
@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <label for="hostNumberValue">Number of host : </label>
+                        <label for="hostNumberValue" style="font-weight: bold;">Number of host : </label>
                     </td>
                     <td>
                         <input id="hostNumberValue" type="number">
@@ -73,8 +73,8 @@
                 <tr>
                     <td>
                         <label for="rangeSelectionValue">Select ip : </label>
+                        <input id="rangeSelectionValue" type="number">
                     </td>
-                    <input id="rangeSelectionValue" type="number">
                 </tr>
             </table>
             <div class="calculateIpButton_container">
@@ -85,6 +85,9 @@
         </div>
         <div id="ipAddressTable_container">
             <div id="showIpTable"></div>
+            <div class="reset_button">
+                <button id="reset">Reset</button>
+            </div>
         </div>
     </div>
 </body>
