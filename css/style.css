@@ -101,11 +101,13 @@ th, td
 
 .class_mask_table_value
 {
+    font-weight: bold;
     text-align: left;
 }
 
 .class_mask_table_range
 {
+    font-weight: bold;
     text-align: center;
 }
 

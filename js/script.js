@@ -39,7 +39,6 @@ calculateButton.onclick = function() {
     console.log("host reserve : " + hostReserve);
     console.log("total number of subnet : " + totalSubnetNumber);
     console.log("total number of host : " + totalHostNumber);
-    console.log("Bits :");
     console.log("total number of subnet bit : " + subBitNumber);
     console.log("total number of host bit : " + hostBitNumber);
     console.log("Bit sum : " + bitSum);
@@ -227,8 +226,6 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
             }
             break;
         case "B":
-            // loop = Math.pow(iterate, 2);
-            // console.log(loop);
             loop = 256 * iterate;
             for(let i = 0;i < loop; i++) {
                 ipTableContent += '<tr><td class="ipAddressTable_table_sr_value">172.'+rangeSelect+'.'+step2+'.'+step+'</td><td class="ipAddressTable_table_firstIp_value">172.'+rangeSelect+'.'+step2+'.'+(step+1)+'</td><td class="ipAddressTable_table_lastIp_value">172.'+rangeSelect+'.'+step2+'.'+((step+increase)-2)+'</td><td class="ipAddressTable_table_broadcast_value">172.'+rangeSelect+'.'+step2+'.'+((step+increase)-1)+'</td></tr>';
