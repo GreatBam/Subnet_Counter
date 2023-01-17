@@ -20,12 +20,14 @@ let hostBit = 0;
 let maskCounter = 0;
 let rangeSelect = 0;
 
-// Bit number calculation
+// Bit number calculation, class identification, mask value
 calculateButton.onclick = function() {
+    //subnet number calculation
     let subnetValue = subnetNumberValue.value;
     let subnetReserve = (subnetValue * 0.1);
     let totalSubnetNumber = Math.ceil(parseFloat(subnetValue) + parseFloat(subnetReserve)).toFixed(1);
     let subBitNumber = Math.ceil((Math.log(totalSubnetNumber))/(Math.log(2)));
+    //host number calculation
     let hostValue = hostNumberValue.value;
     let hostReserve = (hostValue * 0.1);
     let totalHostNumber = Math.ceil(parseFloat(hostValue) + parseFloat(hostReserve)).toFixed(1);
@@ -42,6 +44,7 @@ calculateButton.onclick = function() {
     console.log("total number of host bit : " + hostBitNumber);
     console.log("Bit sum : " + bitSum);
 
+    // identify class and binary mask
     if(bitSum <= 8) {
         classType = "C";
         classRange.innerHTML = classType;
@@ -119,9 +122,12 @@ calculateButton.onclick = function() {
         console.log("Classe A");
         console.log("Binary mask : " + mask);
     }
+
+    // decimal mask
     let subDecimal = parseInt(mask, 2)
     console.log("Decimal mask : " + subDecimal);
 
+    // entire mask/submask value
     result.style.visibility = "visible";
     classRange.innerHTML = classType;
     if(classType == "C") {
@@ -142,6 +148,7 @@ calculateButton.onclick = function() {
     }
 }
 
+// Select ip range
 function rangeSelectionFunc(classType, subDecimal) {
     rangeSelection.style.visibility = "visible";
     calculateIpButton.onclick = function() {
@@ -150,6 +157,7 @@ function rangeSelectionFunc(classType, subDecimal) {
     }
 }
 
+// show ip address table
 function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
     ipAddressTable.style.visibility = "visible";
     let iterate = 0;
@@ -204,10 +212,10 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
             for(let i = 0;i < loop; i++) {
                 ipTableContent += '<tr><td class="ipAddressTable_table_sr_value">172.'+step3+'.'+step2+'.'+step+'</td><td class="ipAddressTable_table_firstIp_value">10.'+step3+'.'+step2+'.'+(step+1)+'</td><td class="ipAddressTable_table_lastIp_value">10.'+step3+'.'+step2+'.'+((step+increase)-2)+'</td><td class="ipAddressTable_table_broadcast_value">10.'+step3+'.'+step2+'.'+((step+increase)-1)+'</td></tr>';
                 if((step+increase) >= 255) {
-                    step2 += increase;
+                    step2 += 1;
                     step = 0;
                     if(step2 > 255) {
-                        step3 += increase;
+                        step3 += 1;
                         step2 = 0;
                         if(step3 > 255) {
                             loop = 0;
@@ -219,15 +227,17 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
             }
             break;
         case "B":
-            loop = Math.pow(iterate, 2);
+            // loop = Math.pow(iterate, 2);
+            // console.log(loop);
+            loop = 256 * iterate;
             for(let i = 0;i < loop; i++) {
                 ipTableContent += '<tr><td class="ipAddressTable_table_sr_value">172.'+rangeSelect+'.'+step2+'.'+step+'</td><td class="ipAddressTable_table_firstIp_value">172.'+rangeSelect+'.'+step2+'.'+(step+1)+'</td><td class="ipAddressTable_table_lastIp_value">172.'+rangeSelect+'.'+step2+'.'+((step+increase)-2)+'</td><td class="ipAddressTable_table_broadcast_value">172.'+rangeSelect+'.'+step2+'.'+((step+increase)-1)+'</td></tr>';
                 if((step + increase) >= 255) {
-                    step2 += increase;
+                    step2 += 1;
                     step = 0;
-                    if(step2 > 255) {
-                        loop = 0;
-                    }
+                    // if(step2 > 255) {
+                    //     loop = 0;
+                    // }
                 } else {
                     step += increase;
                 }
@@ -244,6 +254,7 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
     ipTable.innerHTML = ipTableContent;
 }
 
+// reload page
 reset.onclick = function() {
     location.reload();
 }
