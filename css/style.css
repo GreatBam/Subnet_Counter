@@ -129,13 +129,12 @@ th, td
     visibility: hidden;
 }
 
-.ipAddressTable, .ipAddressTable th, .ipAddressTable td
+.ipAddressTable, .ipAddressTable th, .ipAddressTable tr, .ipAddressTable td
 {
     border: 1px solid black;
     border-collapse: collapse;
     margin-top: 20px;
     font-weight: bold;
-    visibility: hidden;
 }
 
 .ipAddressTable_table_sr_title
@@ -152,3 +151,5 @@ th, td
 {
     color: red;
 }
+
+/* , .ipAddressTable th, .ipAddressTable td */

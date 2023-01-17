@@ -67,6 +67,11 @@
             <table class="rangeSelection">
                 <tr>
                     <td>
+                        <div id="ipRange"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="rangeSelectionValue">Select ip : </label>
                     </td>
                     <input id="rangeSelectionValue" type="number">
@@ -78,24 +83,8 @@
                 </button>
             </div>
         </div>
-        <div class="ipAddressTable_container">
-            <table class="ipAddressTable">
-                <thead id="ipAddressTable_table_head">
-                    <th class="ipAddressTable_table_sr_title">
-                        Adresse de sous réseau
-                    </th>
-                    <th class="ipAddressTable_table_firstip_title">
-                        Première adresse IP
-                    </th>
-                    <th class="ipAddressTable_table_lastip_title">
-                        Dernière adresse IP
-                    </th>
-                    <th class="ipAddressTable_table_broadcast_title">
-                        Adresse de diffusion
-                    </th>
-                </thead>
-                <div id="showIpTable"></div>
-            </table>
+        <div id="ipAddressTable_container">
+            <div id="showIpTable"></div>
         </div>
     </div>
 </body>

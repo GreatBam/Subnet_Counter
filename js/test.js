@@ -6,6 +6,7 @@ let result = document.getElementById("result");
 let classRange = document.getElementById("classRange");
 let subnetMask = document.getElementById("subnetMask");
 let rangeSelection = document.getElementById("rangeSelection_container");
+let ipRange = document.getElementById('ipRange');
 let rangeSelectionNumber = document.getElementById("rangeSelectionValue");
 let calculateIpButton = document.getElementById("calculateIpButton");
 let ipAddressTable = document.getElementById("ipAddressTable_container");
@@ -15,6 +16,7 @@ let ipTable = document.getElementById("showIpTable");
 calculateButton.onclick = function() {
     let classType = "";
     let mask = "";
+    let subnetMaskDecimalValue
     let subBit = 0;
     let hostBit = 0;
     let maskCounter = 0;
@@ -25,7 +27,7 @@ calculateButton.onclick = function() {
     console.log("number of subnet : " + subnetNumberValue.value);
     console.log("subnet reserve : " + subnetReserve);
     console.log("total number of subnet : " + totalSubnetNumber);
-    console.log("total number of subnet bit : " + subBitValue);
+    console.log("total number of subnet bit : " + subBitNumber);
     
     let hostValue = hostNumberValue.value;
     let hostReserve = (hostValue * 0.1);
@@ -112,74 +114,89 @@ calculateButton.onclick = function() {
                 }
             }
         }
-        console.log("Classe B");
-        console.log("Mask : " + mask);
     }
     let subDecimal = parseInt(mask, 2)
+    console.log("Mask : " + subDecimal);
 
+    result.style.visibility = "visible";
+    classRange.innerHTML = classType;
     if(classType == "C") {
         subnetMaskDecimalValue = `255.255.255.${subDecimal}`;
         subnetMask.innerHTML = subnetMaskDecimalValue;
-        rangeSelection(classType, mask);
+        ipRange.innerHTML = "Choose between 0 and 255";
+        rangeSelectionFunc(classType, subDecimal);
     } else if(classType == "B") {
         subnetMaskDecimalValue = `255.255.${subDecimal}.0`;
         subnetMask.innerHTML = subnetMaskDecimalValue;
-        rangeSelection(classType, mask);
+        rangeSelectionFunc(classType, subDecimal);
+        ipRange.innerHTML = "Choose between 16 and 31";
     } else if(classType == "A") {
         subnetMaskDecimalValue = `255.${subDecimal}.0.0`;
         subnetMask.innerHTML = subnetMaskDecimalValue;
+        let rangeSelect = 0;
+        ipAddressTableFunc(classType, subDecimal, rangeSelect);
     }
-    rangeSelect = 0;
-    ipAddressTableFunc(classType, mask, rangeSelect);
 }
 
-function rangeSelection(classType, mask) {
+function rangeSelectionFunc(classType, subDecimal) {
     rangeSelection.style.visibility = "visible";
     calculateIpButton.onclick = function() {
         rangeSelect = rangeSelectionNumber.value;
-        ipAddressTableFunc(classType, mask, rangeSelect);
+        ipAddressTableFunc(classType, subDecimal, rangeSelect);
     }
 }
 
-function ipAddressTableFunc(classType, mask, rangeSelect) {
+function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
     let iterate = 0;
+    let step2 = 0;
+    let increase = 0;
+    let step = 0;
     let loop = 0;
     let back = 0;
-    let iterate2 = 0;
+    let ipTableContent = "<table class='ipAddressTable'><thead id='ipAddressTable_table_head'><th class='ipAddressTable_table_sr_title'>Adresse de sous réseau</th><th class='ipAddressTable_table_firstip_title'>Première adresse IP</th><th class='ipAddressTable_table_lastip_title'>Dernière adresse IP</th><th class='ipAddressTable_table_broadcast_title'>Adresse de diffusion</th></thead>";
     ipAddressTable.style.visibility = "visible";
-    switch(mask) {
+    switch(subDecimal) {
         case 0:
             iterate += 0;
+            step += 0;
             break;
         case 128:
             iterate += 2;
+            step += 128;
             break;
         case 192:
             iterate += 4;
+            step += 64;
             break;
         case 224:
             iterate += 8;
+            step += 32;
             break;
         case 240:
             iterate += 16;
+            step += 16;
             break;
         case 248:
             iterate += 32;
+            step += 8;
             break;
         case 252:
             iterate += 64;
+            step += 4;
             break;
         case 254:
             iterate += 128;
+            step += 2;
             break;
         case 255:
             iterate += 1;
+            step += 1;
             break;
     }
+    console.log("Iterate : " + iterate)
     let ipRoot = 0;
     switch(classType) {
         case "A":
-            ipRoot += 0;
             if(iterate == 0) {
                 loop += 1;
             } else {
@@ -205,112 +222,117 @@ function ipAddressTableFunc(classType, mask, rangeSelect) {
                 ipTableContent += ```
                 <tr>
                     <td id="ipAddressTable_table_subnetAddressValue">
-                        ${ipRoot}.${iterate}.${iterate}.${iterate}
+                        ${ipRoot}.${iterate3}.${iterate2}.${iterate}
                     </td>
                     <td id="ipAddressTable_table_firstIpValue">
-                        ${ipRoot}.${iterate}.${iterate}.${iterate}
+                        ${ipRoot}.${iterate3}.${iterate2}.${(iterate+1)}
                     </td>
                     <td id="ipAddressTable_table_lastIpValue">
-                        
+                        ${ipRoot}.${iterate3}.${iterate2}.${((iterate*2)-2)}
                     </td>
                     <td id="ipAddressTable_table_broadcastValue">
-                        
+                        ${ipRoot}.${iterate3}.${iterate2}.${((iterate*2)-1)}
                     </td>
                 </tr>```;
             }
-
-        case "B":
-            back = iterate;
-            ipRoot += rangeSelect;
-            if(iterate == 0) {
-                loop += 1;
-            } else {
-                loop = iterate;
-                loop = Math.pow(loop, 3);
-                ipTableContent += ```
-                <tr>
-                    <td id="ipAddressTable_table_subnetAddressValue">
-                        172.${rangeSelect}.0.0
-                    </td>
-                    <td id="ipAddressTable_table_firstIpValue">
-                        172.${rangeSelect}.0.0
-                    </td>
-                    <td id="ipAddressTable_table_lastIpValue">
-                        172.${rangeSelect}.0.${((iterate*2)-2)}
-                    </td>
-                    <td id="ipAddressTable_table_broadcastValue">
-                        172.${rangeSelect}.0.${((iterate*2)-1)}
-                    </td>
-                </tr>```;
-            }
-            for(let i = 0;i < loop; i++) {
-                ipTableContent += ```
-                <tr>
-                    <td id="ipAddressTable_table_subnetAddressValue">
-                        172.${rangeSelect}.${iterate2}.${iterate}
-                    </td>
-                    <td id="ipAddressTable_table_firstIpValue">
-                        172.${rangeSelect}.${iterate2}.${(iterate+1)}
-                    </td>
-                    <td id="ipAddressTable_table_lastIpValue">
-                        172.${rangeSelect}.${iterate2}.${((iterate*2)-2)}
-                    </td>
-                    <td id="ipAddressTable_table_broadcastValue">
-                        172.${rangeSelect}.${iterate2}.${((iterate*2)-1)}
-                    </td>
-                </tr>```;
-                iterate = (iterate * 2)
-                if(iterate >= 255) {
-                    iterate = back;
-                    if(iterate2 == 0) {
-                        iterate2 = back;
-                    } else {
-                        iterate2 = iterate2 * 2;
+            iterate = (iterate * 2)
+            if(iterate >= 255) {
+                iterate = back;
+                if(iterate2 == 0) {
+                    iterate2 = back;
+                } else {
+                    iterate2 = iterate2 * 2;
+                    if(iterate2 >= 255) {
+                        if(iterate3 == 0) {
+                            iterate3 = back;
+                        } else {
+                            iterate3 = iterate3 * 2;
+                        }
                     }
                 }
             }
-        case "C":
-            back = iterate;
-            ipRoot += rangeSelect;
-            if(iterate == 0) {
-                loop += 1;
-            } else {
-                loop = iterate;
-                loop = Math.pow(loop, 3);
-                ipTableContent += ```
-                <tr>
-                    <td id="ipAddressTable_table_subnetAddressValue">
-                        172.${rangeSelect}.0.0
-                    </td>
-                    <td id="ipAddressTable_table_firstIpValue">
-                        172.${rangeSelect}.0.0
-                    </td>
-                    <td id="ipAddressTable_table_lastIpValue">
-                        172.${rangeSelect}.0.${((iterate*2)-2)}
-                    </td>
-                    <td id="ipAddressTable_table_broadcastValue">
-                        172.${rangeSelect}.0.${((iterate*2)-1)}
-                    </td>
-                </tr>```;
-            }
+            break;
+        case "B":
+            loop = Math.pow(iterate, 3);
+            increase = step;
+            step = 0;
+            step2 = 0;
+            console.log(iterate);
             for(let i = 0;i < loop; i++) {
-                ipTableContent += ```
-                <tr>
-                    <td id="ipAddressTable_table_subnetAddressValue">
-                        172.168.${rangeSelect}.${iterate}
-                    </td>
-                    <td id="ipAddressTable_table_firstIpValue">
-                        172.168.${rangeSelect}.${(iterate+1)}
-                    </td>
-                    <td id="ipAddressTable_table_lastIpValue">
-                        172.168.${rangeSelect}.${((iterate*2)-2)}
-                    </td>
-                    <td id="ipAddressTable_table_broadcastValue">
-                        172.168.${rangeSelect}.${((iterate*2)-1)}
-                    </td>
-                </tr>```;
-                iterate = (iterate * 2)
+                ipTableContent += '<tr><td>172.'+rangeSelect+'.'+step2+'.'+step+'</td><td>172.'+rangeSelect+'.'+step2+'.'+(step+1)+'</td><td>172.'+rangeSelect+'.'+step2+'.'+((step+increase)-2)+'</td><td>172.'+rangeSelect+'.'+step2+'.'+((step+increase)-1)+'</td></tr>';
+                if((step+increase) >= 255) {
+                    step2 += increase;
+                    step = 0;
+                    if(step2 >= 255) {
+                        loop = 0;
+                    }
+                } else {
+                    step += increase;
+                }
             }
+            break;
+
+            // back = iterate;
+            // if(iterate == 0) {
+            //     loop += 1;
+            // } else {
+            //     loop = iterate;
+            //     loop = Math.pow(loop, 2);
+                // ipTableContent += ```
+                // <tr>
+                //     <td id="ipAddressTable_table_subnetAddressValue">
+                //         172.${rangeSelect}.0.0
+                //     </td>
+                //     <td id="ipAddressTable_table_firstIpValue">
+                //         172.${rangeSelect}.0.0
+                //     </td>
+                //     <td id="ipAddressTable_table_lastIpValue">
+                //         172.${rangeSelect}.0.${((iterate*2)-2)}
+                //     </td>
+                //     <td id="ipAddressTable_table_broadcastValue">
+                //         172.${rangeSelect}.0.${((iterate*2)-1)}
+                //     </td>
+                // </tr>```;
+            // }
+            // for(let i = 0;i < loop; i++) {
+            //     ipTableContent += ```
+            //     <tr>
+            //         <td id="ipAddressTable_table_subnetAddressValue">
+            //             172.${rangeSelect}.${iterate2}.${iterate}
+            //         </td>
+            //         <td id="ipAddressTable_table_firstIpValue">
+            //             172.${rangeSelect}.${iterate2}.${(iterate+1)}
+            //         </td>
+            //         <td id="ipAddressTable_table_lastIpValue">
+            //             172.${rangeSelect}.${iterate2}.${((iterate*2)-2)}
+            //         </td>
+            //         <td id="ipAddressTable_table_broadcastValue">
+            //             172.${rangeSelect}.${iterate2}.${((iterate*2)-1)}
+            //         </td>
+            //     </tr>```;
+            //     iterate = (iterate * 2)
+            //     if(iterate >= 255) {
+            //         iterate = back;
+            //         if(iterate2 == 0) {
+            //             iterate2 = back;
+            //         } else {
+            //             iterate2 = iterate2 * 2;
+            //         }
+            //     }
+            // }
+            // break;
+        case "C":
+            increase = step;
+            step = 0;
+            console.log(iterate);
+            for(let i = 0;i < iterate; i++) {
+                ipTableContent += '<tr><td>192.168.'+rangeSelect+'.'+step+'</td><td>192.168.'+rangeSelect+'.'+(step+1)+'</td><td>192.168.'+rangeSelect+'.'+((step+increase)-2)+'</td><td>192.168.'+rangeSelect+'.'+((step+increase)-1)+'</td></tr>';
+                step += increase;   
+            }
+            break;
     }
+    ipTableContent += "</table>";
     ipTable.innerHTML = ipTableContent;
 }
+
+{/* <table class="ipAddressTable"><thead id="ipAddressTable_table_head"><th class="ipAddressTable_table_sr_title">Adresse de sous réseau</th><th class="ipAddressTable_table_firstip_title">Première adresse IP</th><th class="ipAddressTable_table_lastip_title">Dernière adresse IP</th><th class="ipAddressTable_table_broadcast_title">Adresse de diffusion</th></thead> */}
