@@ -255,3 +255,16 @@ function ipAddressTableFunc(classType, subDecimal, rangeSelect) {
 reset.onclick = function() {
     location.reload();
 }
+
+// const table = document.createElement("table")
+// const body = document.createElement("tbody")
+// const tr = document.createElement("tr")
+// const td = document.createElement("td")
+// const td2 = document.createElement("td")
+
+// td.textContent = "TD content"
+// td2.textContent = "TD2 content"
+// tr.appendChild(td)
+// body.appendChild(tr)
+// table.appendChild(body)
+// document.body.appendChild(table)
